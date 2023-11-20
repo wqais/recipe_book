@@ -1,0 +1,13 @@
+.ingredient-cart{
+    display: flex;
+    flex-direction: row;
+}
+
+.cart{
+    margin-left: 30%;
+    width: 30%
+}
+
+.cart-hr{
+    border: 3px solid black;
+}

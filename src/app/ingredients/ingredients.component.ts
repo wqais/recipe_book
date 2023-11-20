@@ -8,14 +8,13 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./ingredients.component.css'],
 })
 export class IngredientsComponent implements OnInit {
-  recipeId: number | null = null; // Initialize to null
-
+  recipeId: number | null = null;
   recipe: any;
-  cart: string[] = [];
-
+  cart: any[] = [];
+  total: number = 0
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService,
+    public recipeService: RecipeService,
     private router: Router
   ) {}
 
@@ -26,18 +25,24 @@ export class IngredientsComponent implements OnInit {
       this.recipe = this.recipeService.getRecipeById(this.recipeId);
     } else {
       this.router.navigate(['/recipes']);
-    }
+    } 
+    this.recipeService.clearCart();
   }
 
-  addToCart(ingredient: string) {
-    this.recipeService.addToCart(ingredient);
+  removeFromCart(ingredient: string, recipe_name: string) {
+    this.recipeService.removeFromCart(ingredient, recipe_name);
   }
 
-  removeFromCart(ingredient: string) {
-    this.recipeService.removeFromCart(ingredient);
+
+  operation(operator:string, ingredient: any){
+    this.recipeService.operation(operator, ingredient);
   }
 
-  getCart() {
-    this.cart = this.recipeService.getCart();
+  toCart(ingredient: any){
+    this.recipeService.toCart(ingredient)
+  }
+
+  clearCart(){
+    this.recipeService.clearCart()
   }
 }

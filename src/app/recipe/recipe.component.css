@@ -1,0 +1,30 @@
+ul{
+    display: flex;
+    flex-direction: row;
+}
+
+h2{
+    margin-left: 2rem;
+}
+
+.recipe-card{
+    margin-right: 3rem;
+    padding: 0.1rem;
+}
+
+/* .recipe{
+    width: 30rem;
+} */
+
+.view-btn{
+    margin: 1rem 3rem;
+}
+
+.steps-container{
+    display: block;
+    padding: 1rem;
+}
+
+.step{
+    width: 100%;
+}

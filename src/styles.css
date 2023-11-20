@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+ul,
+li {
+  list-style-type: none;
+}
+
+* {
+  font-family: "Roboto Mono", monospace;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url("https://img.freepik.com/premium-photo/doodle-food-icons-seamless-background_3248-3676.jpg?w=740");
+  filter: blur(3px);
+  z-index: -1;
+}

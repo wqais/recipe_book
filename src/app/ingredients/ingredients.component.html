@@ -1,15 +1,59 @@
-<h2>Ingredients for {{ recipe.name }}</h2>
-<ul>
-  <li *ngFor="let ingredient of recipe.ingredients">
-    {{ ingredient }} 
-    <button (click)="addToCart(ingredient)">Add to Cart</button>
-  </li>
-</ul>
-
-<h3>Shopping Cart</h3>
-<ul>
-  <li *ngFor="let item of cart">
-    {{ item }}
-    <button (click)="removeFromCart(item)">Remove from Cart</button>
-  </li>
-</ul>
+<div class="ingredient-cart">
+  <div class="ingredient-container">
+    <h2>Ingredients for {{ recipe.name }}</h2>
+    <ul class="mt-5">
+      <li *ngFor="let ingredient of recipe.ingredients">
+        <b>{{ ingredient.name }}</b
+        >&nbsp; Rs. {{ ingredient.price }} per {{ ingredient.unit }}
+        <br />
+        <button
+          class="increment-btn btn btn-outline-secondary"
+          (click)="operation('+', ingredient)"
+        >
+          +</button
+        ><span class="qty" id="qty"> {{ ingredient.qty }} </span>
+        <button
+          class="btn btn-outline-secondary decrement-btn"
+          (click)="operation('-', ingredient)"
+        >
+          -
+        </button>
+        <br />
+        <button
+          class="btn btn-primary add-to-cart-btn mt-2"
+          (click)="toCart(ingredient)"
+        >
+          Add to cart
+        </button>
+        <hr />
+      </li>
+    </ul>
+  </div>
+  <div class="cart">
+    <h2 class="cart-heading">Your Cart</h2>
+    <hr class="cart-hr" />
+    <ul class="items-list mt-5">
+      <li *ngFor="let item of recipeService.cart" class="cart-item">
+        <b>{{ item.name }}</b> - Qty:
+        <b>{{ item.qty + " " + item.unit }}</b>
+        <h6>Item Total: Rs. {{ item.qty * item.price }}</h6>
+        <button
+          type="button"
+          class="btn btn-outline-danger remove-btn"
+          (click)="removeFromCart(item, recipe.name)"
+        >
+          Remove
+        </button>
+        <br />
+        <br />
+      </li>
+    </ul>
+    <hr class="cart-hr" />
+    <h4 class="cart-total">Total: Rs. {{ recipeService.total }}</h4>
+    <span *ngIf="recipeService.cart.length > 0">
+      <button class="remove-all btn btn-danger" (click)="clearCart()">
+        Remove All
+      </button>
+    </span>
+  </div>
+</div>
